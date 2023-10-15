@@ -3,21 +3,22 @@
 import { GlobalContext } from "@/context";
 import { adminNavOptions, navOptions, styles } from "@/utils";
 import { Fragment, useContext } from "react";
-import CommonModal from "./CommonModal";
+import CommonModal from "../CommonModal";
 
-const isAdminView = true;
+const isAdminView = false;
 const isAuthUser = true;
 const user = {
     role : 'admin'
 }
 
-function NavItems(){
+function NavItems({ isModalView = false }){
     return(
-        <div className="items-center justify-between w-full md:flex md:w-auto"
+        <div 
+        className={`items-center justify-between w-full md:flex md:w-auto ${ isModalView ? "" : "hidden" }`}
         id="nav-items"
         > 
-            <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border 
-            border-gray-100 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0 bg-white">
+            <ul className={`flex flex-col p-4 md:p-0 mt-4 font-medium border 
+        rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0 bg-white ${isModalView ? "border-none" : "border border-gray-100" }`}>
             
             {
                 isAdminView ? 
@@ -45,7 +46,8 @@ function NavItems(){
 
 export default function Navbar(){
 
-    const {showNavModal, setShowNavModal} = useContext(GlobalContext)
+    const { showNavModal, setShowNavModal } = useContext(GlobalContext)
+    
     return (
         <>
         
@@ -93,7 +95,7 @@ export default function Navbar(){
                     dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
                     aria-controls="navbar-sticky"
                     aria-expanded="false"
-                    onClick={() => {setShowNavModal}}
+                    onClick={() => setShowNavModal(true)}
                 >
                     <span className="sr-only">Open main menu</span>
                     <svg
@@ -118,7 +120,8 @@ export default function Navbar(){
         </div>
         <NavItems/>
         </nav>
-        <CommonModal show={showNavModal} setShow={setShowNavModal}/>
+        <CommonModal showModalTitle={false} mainContent={<NavItems isModalView={true}/>} 
+        show={showNavModal} setShow={setShowNavModal}/>
         </>
     )
 }
