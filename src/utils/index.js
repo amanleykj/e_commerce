@@ -39,25 +39,33 @@ export const adminNavOptions = [
     },
 ];
 
-export const styles = {
-    button : 'mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white'
-};
 
 export const registrationFormControls = [
+
     {
-    id: "name",
+    id: "firstName",
     type: "text",
-    placeholder: "Enter your name",
-    label: "Name",
+    placeholder: "Enter your first name.",
+    label: "First Name",
     componentType: "input",
     },
+
+    {
+    id : "lastName",
+    type : "text",
+    placeholder : "Enter your last name.",
+    label : "Last Name",
+    componentType : "input",
+    },
+
     {
     id: "email",
     type: "email",
-    placeholder: "Enter your email",
+    placeholder: "Enter your email.",
     label: "Email",
     componentType: "input",
     },
+
     {
     id: "password",
     type: "password",
@@ -65,6 +73,7 @@ export const registrationFormControls = [
     label: "Password",
     componentType: "input",
     },
+
     {
     id: "role",
     type: "",
@@ -88,14 +97,15 @@ export const loginFormControls = [
     {
     id: "email",
     type: "email",
-    placeholder: "Enter your email",
+    placeholder: "Enter your email.",
     label: "Email",
     componentType: "input",
     },
+
     {
     id: "password",
     type: "password",
-    placeholder: "Enter your password",
+    placeholder: "Enter your password.",
     label: "Password",
     componentType: "input",
     },
@@ -109,6 +119,7 @@ export const adminAddProductformControls = [
     label: "Name",
     componentType: "input",
     },
+
     {
     id: "price",
     type: "number",
@@ -116,6 +127,7 @@ export const adminAddProductformControls = [
     label: "Price",
     componentType: "input",
     },
+
     {
     id: "description",
     type: "text",
@@ -123,6 +135,7 @@ export const adminAddProductformControls = [
     label: "Description",
     componentType: "input",
     },
+
     {
     id: "category",
     type: "",

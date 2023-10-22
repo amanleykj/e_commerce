@@ -1,7 +1,7 @@
 'use client'
 
 import { GlobalContext } from "@/context";
-import { adminNavOptions, navOptions, styles } from "@/utils";
+import { adminNavOptions, navOptions } from "@/utils";
 import { Fragment, useContext } from "react";
 import CommonModal from "../CommonModal";
 
@@ -65,8 +65,8 @@ export default function Navbar(){
                     !isAdminView && isAuthUser ?
                     (
                 <Fragment>
-                    <button className={styles.button}>Account</button>
-                    <button className={styles.button}>Cart</button>
+                    <button className={"mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white"}>Account</button>
+                    <button className={"mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white"}>Cart</button>
                 </Fragment>
                     )
                 : null
@@ -76,16 +76,16 @@ export default function Navbar(){
                     (
                     isAdminView ? 
                     (
-                    <button className={styles.button}>Client View</button> ) : 
+                    <button className={"mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white"}>Client View</button> ) : 
                     (
-                    <button className={styles.button}>Admin View</button>
+                    <button className={"mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white"}>Admin View</button>
                     ))
                     : null
                 }
                 {
                     isAuthUser ? 
-                    <button className={styles.button}>Logout</button> : 
-                    <button className={styles.button}>Log In</button>
+                    <button className={"mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white"}>Logout</button> : 
+                    <button className={"mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white"}>Log In</button>
                 }
                 <button
                     data-collapse-toggle="navbar-sticky"

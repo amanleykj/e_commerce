@@ -6,7 +6,7 @@ export const GlobalContext = createContext(null)
 
 export default function GlobalState({ children }){
 
-    const [ showNavModal, setShowNavModal ] = useState(false)
+const [ showNavModal, setShowNavModal ] = useState(false)
 
 
     return(
