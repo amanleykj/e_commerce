@@ -2,15 +2,47 @@
 
 import InputComponent from "@/components/FormElements/InputComponent"
 import SelectComponent from "@/components/FormElements/SelectComponent";
+import { registerNewUser } from "@/services/register";
 import { registrationFormControls } from "@/utils"
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 const isRegistered = false;
 
+const initialFormData = {
+    firstName : '',
+    lastName : '',
+    email : '',
+    password : '',
+    role : 'customer'
+}
 
 export default function Register() {
 
     const router = useRouter()
+
+    const [ formData, setFormData ] = useState(initialFormData);
+
+    console.log(formData)
+
+    
+    function isFormValid() {
+        return formData && formData.firstName && formData.firstName.trim() !== ''
+        &&
+        formData && formData.lastName && formData.lastName.trim() !== ''
+        &&
+        formData && formData.email && formData.email.trim() !== ''
+        &&
+        formData && formData.password && formData.password.trim() !== '' ?
+        true 
+        :
+        false
+    }
+
+    async function handleRegister() {
+        const data = await registerNewUser(formData);
+        console.log(data);
+    }
 
     return(
         <div className="bg-green relative">
@@ -44,6 +76,12 @@ export default function Register() {
                                             type={controlItem.type}
                                             placeholder={controlItem.placeholder}
                                             label={controlItem.label}
+                                            onChange={(e) => {
+                                                setFormData({
+                                                    ...formData, [controlItem.id] : e.target.value
+                                                })
+                                            }}
+                                            value={formData[controlItem.id]}
                                             />
                                             )
                                             :
@@ -51,14 +89,22 @@ export default function Register() {
                                                 <SelectComponent
                                                 options={controlItem.options}
                                                 label={controlItem.label}
+                                                onChange={(e) => {
+                                                    setFormData({
+                                                        ...formData, [controlItem.id] : e.target.value
+                                                    })
+                                                }}
+                                                value={formData[controlItem.id]}
                                                 />
                                             ) : null
                                     )}
                                     <button
-                                    className="inline-flex w-full items-center justify-center
+                                    className="disabled:opacity-50 inline-flex w-full items-center justify-center
                                     bg-black px-6 py-4 text-lg text-white transition-all duration-200 ease-in-out focus:shadow
                                     font-medium uppercase tracking-wide
                                     "
+                                    disabled={!isFormValid()}
+                                    onClick={handleRegister}
                                     >Make Account</button>
 
                                 <div className="flex flex-col gap-2">

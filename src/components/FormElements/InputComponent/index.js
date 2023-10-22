@@ -1,5 +1,5 @@
 
-export default function InputComponent({label, placeholder, type, onChange, value}) {
+export default function InputComponent({ label, placeholder, type, onChange, value }) {
     
     return(
         <div className="relative ">
