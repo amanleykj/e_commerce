@@ -45,7 +45,7 @@ export const registrationFormControls = [
     {
     id: "firstName",
     type: "text",
-    placeholder: "Enter your first name.",
+    placeholder: "Enter first name here...",
     label: "First Name",
     componentType: "input",
     },
@@ -53,7 +53,7 @@ export const registrationFormControls = [
     {
     id : "lastName",
     type : "text",
-    placeholder : "Enter your last name.",
+    placeholder : "Enter last name here...",
     label : "Last Name",
     componentType : "input",
     },
@@ -61,7 +61,7 @@ export const registrationFormControls = [
     {
     id: "email",
     type: "email",
-    placeholder: "Enter your email.",
+    placeholder: "Enter email here...",
     label: "Email",
     componentType: "input",
     },
@@ -69,7 +69,7 @@ export const registrationFormControls = [
     {
     id: "password",
     type: "password",
-    placeholder: "Enter your password",
+    placeholder: "Enter password here...",
     label: "Password",
     componentType: "input",
     },
@@ -87,7 +87,7 @@ export const registrationFormControls = [
         },
         {
         id: "customer",
-        label: "customer",
+        label: "Customer",
         },
     ],
     },
@@ -97,7 +97,7 @@ export const loginFormControls = [
     {
     id: "email",
     type: "email",
-    placeholder: "Enter your email.",
+    placeholder: "Enter registered email here.",
     label: "Email",
     componentType: "input",
     },
@@ -105,7 +105,7 @@ export const loginFormControls = [
     {
     id: "password",
     type: "password",
-    placeholder: "Enter your password.",
+    placeholder: "Enter password here...",
     label: "Password",
     componentType: "input",
     },

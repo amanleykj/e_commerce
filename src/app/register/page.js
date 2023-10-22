@@ -1,12 +1,16 @@
 'use client'
 
 import InputComponent from "@/components/FormElements/InputComponent"
+import SelectComponent from "@/components/FormElements/SelectComponent";
 import { registrationFormControls } from "@/utils"
+import { useRouter } from "next/navigation";
 
-const isRegistered = true
+const isRegistered = false;
 
 
 export default function Register() {
+
+    const router = useRouter()
 
     return(
         <div className="bg-green relative">
@@ -20,7 +24,7 @@ export default function Register() {
                         ">
                             <p className="w-full text-4xl font-medium text-center font-serif text-black">
                                 {
-                                    isRegistered ? "Registration Successful." : "Sign Up for an Account."
+                                    isRegistered ? "Registration success." : "Make an account."
                                 }
 
                             </p>
@@ -36,14 +40,38 @@ export default function Register() {
                                     {
                                         registrationFormControls.map(controlItem => 
                                             controlItem.componentType === 'input' ? (
-                                            <InputComponent/>
+                                            <InputComponent
+                                            type={controlItem.type}
+                                            placeholder={controlItem.placeholder}
+                                            label={controlItem.label}
+                                            />
                                             )
                                             :
                                             controlItem.componentType === 'select' ? (
-                                                <SelectComponent/>
+                                                <SelectComponent
+                                                options={controlItem.options}
+                                                label={controlItem.label}
+                                                />
                                             ) : null
                                     )}
+                                    <button
+                                    className="inline-flex w-full items-center justify-center
+                                    bg-black px-6 py-4 text-lg text-white transition-all duration-200 ease-in-out focus:shadow
+                                    font-medium uppercase tracking-wide
+                                    "
+                                    >Make Account</button>
 
+                                <div className="flex flex-col gap-2">
+                                    <p>Already have account?</p>
+                                    <button
+                                    onClick={() => router.push("/login")}
+                                    className="inline-flex w-full items-center justify-center
+                                    bg-black px-6 py-4 text-lg text-white transition-all duration-200 ease-in-out focus:shadow
+                                    font-medium uppercase tracking-wide
+                                    "
+                                    >Login</button>
+                                
+                                </div>
 
                                 </div>
                             }

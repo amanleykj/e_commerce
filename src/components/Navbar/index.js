@@ -55,7 +55,7 @@ export default function Navbar(){
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <div className="flex items-center cursor-pointer">
                 <span className="self-center text-2xl text-black font-semibold whitespace-nowrap">
-                    Trap Trap Trap
+                    TrapWangz
 
                 </span>
 
