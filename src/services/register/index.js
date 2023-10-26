@@ -1,8 +1,5 @@
-
-
-export const registerNewUser = async  ( formData ) => {
+export const registerNewUser = async ( formData ) => {
     try {
-
         const response = await fetch('/api/register', {
             method : 'POST',
             headers : {
@@ -11,13 +8,11 @@ export const registerNewUser = async  ( formData ) => {
             body : JSON.stringify(formData)
         })
 
-        const finalData = response.json()
-        return finalData
+        const finalData = response.json();
+        return finalData;
     }
-
     catch(error) {
         console.log(`You have an error and it's this: ${ error }`)
-
     }
 
 }

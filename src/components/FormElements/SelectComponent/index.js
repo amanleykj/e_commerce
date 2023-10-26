@@ -1,7 +1,4 @@
 
-
-
-
 export default function SelectComponent({ label, value, onChange, options = [], }) {
     
     return(

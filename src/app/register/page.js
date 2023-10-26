@@ -7,7 +7,6 @@ import { registrationFormControls } from "@/utils"
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-const isRegistered = false;
 
 const initialFormData = {
     firstName : '',
@@ -18,15 +17,15 @@ const initialFormData = {
 }
 
 export default function Register() {
-
+    
     const router = useRouter()
-
+    const [ isRegistered, setIsRegistered ] = useState(false)
     const [ formData, setFormData ] = useState(initialFormData);
-
     console.log(formData)
 
     
     function isFormValid() {
+
         return formData && formData.firstName && formData.firstName.trim() !== ''
         &&
         formData && formData.lastName && formData.lastName.trim() !== ''
