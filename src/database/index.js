@@ -6,7 +6,8 @@ const configOptions = {
 }
 
 const connectToDB = async() => {
-    const connectionURL = "mongodb+srv://anthonymanleysu:<SRdhdBWytr1rijaC>@clustertrap.ktkhlsz.mongodb.net/";
+    const connectionURL = "mongodb+srv://anthonymanleysu:SRdhdBWytr1rijaC@clustertrap.ktkhlsz.mongodb.net/";
+
     mongoose
     .connect(connectionURL, configOptions)
     .then(() => console.log("Looking good. DB connection good."))

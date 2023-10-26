@@ -35,8 +35,7 @@ export async function POST( request ) {
 try {
     // check if the user is in the DB first
     console.log("Trying now.")
-    const isUserAlreadyHere = await User.findOne({ email });
-    console.log("Email fine. It's a new one.")
+    const isUserAlreadyHere = await User.findOne({email});
     if (isUserAlreadyHere) {
         return NextResponse.json({
             success : false,
@@ -48,16 +47,15 @@ try {
         const newlyMadeUser = await User.create({
             firstName, lastName, email, password : hashPW, role
         });
-    }
+    
     if (newlyMadeUser) {
         return NextResponse.json({
             success : true,
             message : "Account created successfully. All good!"
         })
     }
-
-}
-catch(error) {
+    }
+} catch(error) {
     console.log("PROBLEM IS HERE.");
     console.log(`The error is: ${error}`)
     return NextResponse.json({
