@@ -3,13 +3,49 @@
 import InputComponent from "@/components/FormElements/InputComponent"
 import { loginFormControls } from "@/utils"
 import { useRouter } from "next/navigation";
+import { useContext, useState } from "react";
+import { loginUser } from "@/services/login";
+import { GlobalContext } from "@/context";
+import { setRequestMeta } from "next/dist/server/request-meta";
 
-const isRegistered = false;
+
+const initialFormData = {
+    email : '',
+    password : ''
+}
 
 
 export default function Login() {
 
+    const [ formData, setFormData ] = useState(initialFormData);
+
+    const { isAuthUser, setIsAuthUser, user, setUser } = useContext(GlobalContext)
+
     const router = useRouter()
+
+    function isValidForm() {
+        return formData && formData.email && formData.email.trim() !== '' &&
+        formData.password && formData.password.trim() !== '' ? true : false
+    }
+
+    async function handleLogin() {
+        const data = await loginUser(formData);
+
+        console.log(`Form data is: ${data}`);
+
+        if(data.success) {
+            setIsAuthUser(true)
+            setUser(data?.finalData?.user)
+            setFormData(initialFormData)
+            Cookies.set('token', data?.finalData?.token)
+            localStorage.setItem('user', JSON.stringify())
+            console.log("LOGIN COMPLETED.")
+
+        }
+        else {
+            setIsAuthUser(false)
+        }
+    }
 
     return(
         <div className="bg-green relative">
@@ -33,15 +69,23 @@ export default function Login() {
                                             type={controlItem.type}
                                             placeholder={controlItem.placeholder}
                                             label={controlItem.label}
+                                            value={formData[controlItem.id]}
+                                            onChange={(e) => {
+                                                setFormData({
+                                                    ...formData, [controlItem.id] : e.target.value
+                                                })
+                                            }}
                                             />
                                             )
                                             : null
                                     )}
                                     <button
-                                    className="inline-flex w-full items-center justify-center
+                                    className="disabled:opacity-50 inline-flex w-full items-center justify-center
                                     bg-black px-6 py-4 text-lg text-white transition-all duration-200 ease-in-out focus:shadow
                                     font-medium uppercase tracking-wide
                                     "
+                                    disabled={!isValidForm()}
+                                    onClick={handleLogin}
                                     >Login</button>
 
                                 <div className="flex flex-col gap-2">

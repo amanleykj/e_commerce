@@ -1,9 +1,6 @@
 
 
-
-
-
-export const login = async(formData) => {
+export const loginUser = async(formData) => {
 
     try {
 

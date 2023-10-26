@@ -29,6 +29,7 @@ export async function POST( request ) {
 
 try {
     const checkUser = await User.findOne({ email })
+    
     if(!checkUser) {
             return NextResponse.json({
                 success : false,
