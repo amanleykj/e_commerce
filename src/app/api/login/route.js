@@ -1,6 +1,8 @@
 import connectToDB from "@/database"
 import User from "@/models/user";
 import Joi from "joi";
+import { jwt } from "jsonwebtoken";
+import { NextResponse } from "next/server";
 
 
 const schema = Joi.object({
@@ -34,7 +36,36 @@ try {
         })
     }
 
-    const checkPassword = await compare(password, User.findOne({ password }))
+    const checkPassword = await compare(password, checkUser.password);
+    if(!checkPassword) {
+        return NextResponse.json({
+            success : false,
+            message : "Password isn't right. Try again."
+    })
+    }
+
+    const token = jwt.sign({
+        id : checkUser._id,
+        email : checkUser?.email,
+        role : checkUser?.role
+    }, 'default-secret-key', { expiresIn : '1d'});
+
+    const finalData = {
+        token,
+        user : {
+            email : checkUser.email,
+            firstName : checkUser.firstName,
+            lastName : checkUser.lastName,
+            _id : checkUser._id,
+            role : checkUser.role
+        }
+    }
+
+    return NextResponse.json({
+        success : true,
+        message : "Login is good.",
+        finalData
+    })
 
 }
 
